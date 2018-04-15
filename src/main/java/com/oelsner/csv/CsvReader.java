@@ -16,12 +16,12 @@ public class CsvReader {
     public static void read() throws IOException {
 
         try (Reader reader = Files.newBufferedReader(Paths.get(CKR_FILE));
-             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
+             CSVParser parser = new CSVParser(reader, CSVFormat.DEFAULT
                      .withHeader("CkrNumber", "CkrRun")
                      .withIgnoreHeaderCase()
                      .withTrim())
         ) {
-            for (CSVRecord record : csvParser) {
+            for (CSVRecord record : parser) {
                 String ckrNumber = record.get("CkrNumber");
                 String ckrRun = record.get("CkrRun");
                 System.out.println("Record Number: " + record.getRecordNumber());
@@ -40,11 +40,11 @@ public class CsvReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        CSVParser csvParser;
+        CSVParser parser;
         List<CSVRecord> csvRecords = null;
         try {
-            csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
-            csvRecords = csvParser.getRecords();
+            parser = new CSVParser(reader, CSVFormat.DEFAULT);
+            csvRecords = parser.getRecords();
         } catch (IOException e) {
             e.printStackTrace();
         }

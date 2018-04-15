@@ -18,14 +18,14 @@ public class CsvWriter {
 //        Ckr ckr = new Ckr();
         Random random = new Random();
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(CSV_FILE_PATH_DEST));
-             CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
+             CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT
                      .withHeader("CkrNumber", "CkrRun"))
         ) {
             for (int i = 0; i < 200; i++) {
-                csvPrinter.printRecord(random.nextInt(999999) + 1, random.nextInt(99999) + 1);
+                printer.printRecord(random.nextInt(999999) + 1, random.nextInt(99999) + 1);
             }
 
-            csvPrinter.flush();
+            printer.flush();
         }
     }
 }
